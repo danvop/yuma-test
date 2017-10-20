@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "files":[],
+        "psr-4": {
+            "Core\\": "core/",
+            "App\\": "app/"
+        },
+        "files": ["core/helpers.php"]
+    }
+}

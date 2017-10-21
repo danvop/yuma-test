@@ -15,11 +15,12 @@ function view($name, $data = [])
 
 /**
  * Testing helper dump and die
- * @param  $param 
+ * @param  $param
  * @return var_dump($param)
  */
 function dd($param)
 {
-    var_dump($param);
-    die();
+    echo '<pre>';
+    die(var_dump($param));
+    echo '</pre>';
 }

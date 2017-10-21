@@ -8,8 +8,8 @@ require('vendor/autoload.php');
 
 $user = new User;
 $user->insert([
-    'name' => 'jodhn',
-    'email' => 'jdohn@mail.com',
+    'name' => 'jodfhn',
+    'email' => 'jddohn@mail.com',
     'password' => 'secret',
     'role' => 'user'
     ]);

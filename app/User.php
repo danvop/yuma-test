@@ -40,15 +40,15 @@ class User
             implode(', ', array_keys($parameters)),
             ':' . implode(', :', array_keys($parameters))
         );
-
+        $statement = $this->pdo->prepare($sql);
         try {
-            $statement = $this->pdo->prepare($sql);
-
             $statement->execute($parameters);
-        // } catch (\Exception $e) {
-        } catch (PDOException $e) {
-            die($e->getMessage());
+        } catch (\PDOException $e) {
+            // dd($e);
+            //die($e->getMessage());
+            echo "<p>Dublicate entry email. Please enter again</p>";
         }
+
     }
 
     /**
@@ -61,10 +61,11 @@ class User
         $password = 'secret';
         $host = 'localhost';
         $db = 'yuma';
+        $options = [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION];
         
         try {
-            return new \PDO("mysql:dbname=$db;host=$host", $username, $password);
-        } catch (PDOException $e) {
+            return new \PDO("mysql:dbname=$db;host=$host", $username, $password, $options);
+        } catch (\PDOException $e) {
             die($e->getMessage());
         }
     }

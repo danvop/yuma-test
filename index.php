@@ -1,8 +1,8 @@
 <?php
 require('vendor/autoload.php');
 
-use app\Auth;
-use app\User;
+//use app\Auth;
+//use app\User;
 
 use core\{Router, Request};
 

@@ -1,3 +1,7 @@
+<?php
+use app\Auth;
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -33,17 +37,24 @@
           
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
+            
+            
+            <?php if (!Auth::check()) : ?> 
+                <li class="nav-item active">
+                    <a class="nav-link" href="login">Login <span class="sr-only"></span></a>
+                </li>
+            <?php endif;?>  
+            
+            <?php if (Auth::check()) : ?>
+                <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="login" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?= $_SESSION['user']['name'] ?? 'Login' ?>
                 </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-              
-                <?php if (Auth::check()) : ?>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
                     <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">logout</a>
-                    
-                <?php endif;?>
+                    <a class="dropdown-item" href="logout">logout</a>
+                
+            <?php endif;?>
               
             </div>
           </li>

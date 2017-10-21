@@ -5,6 +5,9 @@
             "core\\": "core/",
             "app\\": "app/"
         },
-        "files": ["core/helpers.php"]
+        "files": [
+            "core/helpers.php",
+            "core/bootstrap.php"
+        ]
     }
 }

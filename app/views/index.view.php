@@ -6,7 +6,11 @@
 <body>
 <div>
     <h2>INDEX</h2>
-    <h3>hello <?= $user ?? 'guest' ?></h3>
+    <h3>hello <?= $_SESSION['user']['name'] ?? 'guest' ?></h3>
+
+    <?php var_dump($users); ?>
+
+
 </div>
 </body>
 </html>

@@ -24,3 +24,8 @@ function dd($param)
     die(var_dump($param));
     echo '</pre>';
 }
+
+function redirect($path)
+{
+    header("Location: /{$path}");
+}

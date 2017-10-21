@@ -23,6 +23,29 @@ class User
         $this->pdo = $this->getConnection();
     }
 
+    public function getRole()
+    {
+        return $this->role;
+    }
+    public function getName()
+    {
+        return $this->name;
+    }
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function checkUserByEmail($email)
+    {
+        $sql = ("SELECT * FROM `users` WHERE `email`='{$email}'");
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, 'app\User');
+        $stmt->execute();
+        
+        return $stmt->fetch();
+    }
+
     public function fetchAll()
     {
         $sql = ("SELECT * FROM users ");

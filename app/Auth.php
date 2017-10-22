@@ -27,4 +27,18 @@ class Auth
     {
         return (isset($_SESSION['user']));
     }
+
+    public static function userName()
+    {
+        if (static::check()) {
+            return $_SESSION['user']['name'];
+        }
+    }
+
+    public static function userRole()
+    {
+        if (static::check()) {
+            return $_SESSION['user']['role'];
+        }
+    }
 }

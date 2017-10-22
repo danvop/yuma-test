@@ -25,15 +25,21 @@ class UsersController
     }
     public function authorize()
     {
-        $user = (new User)->checkUserByEmail($_POST['email']);
+        try {
+            $user = (new User)->checkUserByEmail($_POST['email']);
+        } catch (\Exception $e) {
+            echo 'wrong password or email';
+            die();
+        }
         if ($user->getEmail() == $_POST['email']
             && password_verify($_POST['password'], $user->getPassword())) {
             Auth::login($user);
             redirect('');
         }
+        echo 'wrong password or email';
         
     }
-
+    
     public function useradd()
     {
         return view('useradd');

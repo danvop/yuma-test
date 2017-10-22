@@ -46,8 +46,11 @@ class User
         $stmt = $this->pdo->prepare($sql);
         $stmt->setFetchMode(\PDO::FETCH_CLASS, 'app\User');
         $stmt->execute();
-        
-        return $stmt->fetch();
+        $ret = $stmt->fetch();
+        if (!$ret) {
+            throw new \Exception('User not found');
+        }
+        return $ret;
     }
 
     public function fetchAll()

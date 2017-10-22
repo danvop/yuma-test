@@ -35,6 +35,10 @@ class User
     {
         return $this->email;
     }
+    public function getPassword()
+    {
+        return $this->password;
+    }
 
     public function checkUserByEmail($email)
     {
@@ -67,11 +71,16 @@ class User
         try {
             $statement->execute($parameters);
         } catch (\PDOException $e) {
-            // dd($e);
-            //die($e->getMessage());
+            
+            die($e->getMessage());
             echo "<p>Dublicate entry email. Please enter again</p>";
         }
+    }
 
+    public static function store($parameters)
+    {
+        $user = new static;
+        $user->insert($parameters);
     }
 
     /**

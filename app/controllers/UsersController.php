@@ -27,16 +27,16 @@ class UsersController
     {
         try {
             $user = (new User)->checkUserByEmail($_POST['email']);
+            if ($user->getEmail() == $_POST['email']
+                && password_verify($_POST['password'], $user->getPassword())) {
+                Auth::login($user);
+                redirect('');
+            }
+            throw new \Exception();
         } catch (\Exception $e) {
             echo 'wrong password or email';
             die();
         }
-        if ($user->getEmail() == $_POST['email']
-            && password_verify($_POST['password'], $user->getPassword())) {
-            Auth::login($user);
-            redirect('');
-        }
-        echo 'wrong password or email';
         
     }
     

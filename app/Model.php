@@ -40,17 +40,19 @@ abstract class Model
 
     public function insert($parameters)
     {
-        $sql = sprintf(
-            'insert into %s (%s) values (%s)',
-            'users',
-            implode(', ', array_keys($parameters)),
-            ':' . implode(', :', array_keys($parameters))
-        );
-        $statement = $this->pdo->prepare($sql);
         try {
+            $sql = sprintf(
+                'insert into %s (%s) values (%s)',
+                'users',
+                implode(', ', array_keys($parameters)),
+                ':' . implode(', :', array_keys($parameters))
+            );
+            $statement = $this->pdo->prepare($sql);
+        
             $statement->execute($parameters);
+            return true;
         } catch (\PDOException $e) {
-            die($e->getMessage());
+            return false;
         }
     }
 }

@@ -26,7 +26,9 @@ require 'partials/nav.php';
         <hr>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button>
       </form>
-
+      <?php
+        errShow();
+      ?>
     </div> <!-- /container -->
 
     <?php require 'partials/footer.php'; ?>

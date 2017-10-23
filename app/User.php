@@ -42,7 +42,10 @@ class User extends Model
     public static function store($parameters)
     {
         $user = new static;
-        $user->insert($parameters);
+        //die(var_dump($user->insert($parameters)));
+        if (!$user->insert($parameters)) {
+            throw new \Exception('This email already exists');
+        }
     }
 
     /**

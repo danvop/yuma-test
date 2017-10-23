@@ -47,12 +47,25 @@ class UsersController
 
     public function store()
     {
-        User::store([
+        try{
+            User::store([
             'name' => $_POST['name'],
             'email' => $_POST['email'],
             'password' => password_hash($_POST['password'], PASSWORD_BCRYPT),
             'role' => $_POST['role']
             ]);
-        redirect('');
+            redirect(''); 
+        } catch (\Exception $e) {
+            errHandle($e);
+            back();
+        }
+            
+
+            
+        
+            
+           
+        
+        
     }
 }

@@ -20,7 +20,9 @@ require 'partials/header.php';
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
-
+    <?php
+        errShow();
+    ?>
     </div> <!-- /container -->
 
     <?php require 'partials/footer.php'; ?>

@@ -32,10 +32,10 @@ class UsersController
                 Auth::login($user);
                 redirect('');
             }
-            throw new \Exception();
+            throw new \Exception('Wrong password or email');
         } catch (\Exception $e) {
-            echo 'wrong password or email';
-            die();
+            errHandle($e);
+            back();
         }
         
     }

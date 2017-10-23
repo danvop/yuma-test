@@ -29,3 +29,22 @@ function redirect($path)
 {
     header("Location: /{$path}");
 }
+
+function back()
+{
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+}
+
+function errHandle(\Exception $e)
+{
+    $_SESSION['error'] = $e->getMessage();
+}
+
+function errShow()
+{
+    if(isset($_SESSION['error'])){
+        require "app/views/partials/error.php";
+        unset($_SESSION['error']);
+    }
+    
+}

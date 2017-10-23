@@ -31,6 +31,7 @@ class UsersController
                 && password_verify($_POST['password'], $user->getPassword())) {
                 Auth::login($user);
                 redirect('');
+                die();
             }
             throw new \Exception('Wrong password or email');
         } catch (\Exception $e) {
@@ -45,16 +46,26 @@ class UsersController
         return view('useradd');
     }
 
+    public function usershow()
+    {
+        $user = (new User)->checkUserByEmail($_GET['email']);
+        return view('usershow', compact('user'));
+    }
+    public function userdel()
+    {
+        redirect('');
+    }
+
     public function store()
     {
-        try{
+        try {
             User::store([
             'name' => $_POST['name'],
             'email' => $_POST['email'],
             'password' => password_hash($_POST['password'], PASSWORD_BCRYPT),
             'role' => $_POST['role']
             ]);
-            redirect(''); 
+            redirect('');
         } catch (\Exception $e) {
             errHandle($e);
             back();

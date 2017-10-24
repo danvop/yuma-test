@@ -35,6 +35,13 @@ class Auth
         }
     }
 
+    public static function userEmail()
+    {
+        if (static::check()) {
+            return $_SESSION['user']['email'];
+        }
+    }
+
     public static function userRole()
     {
         if (static::check()) {

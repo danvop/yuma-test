@@ -23,7 +23,8 @@ require 'partials/nav.php';
         <hr>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
-        <button class="btn btn-lg btn-danger btn-block" type="submit" formaction="userdel">Delete</button>
+        
+        <button class="btn btn-lg btn-danger btn-block" type="submit" formaction="userdel" <?= ($user->getEmail() == Auth::userEmail()) ? 'disabled' : '' ?>>Delete</button>
       </form>
       <?php
         errShow();

@@ -70,13 +70,23 @@ class UsersController
             errHandle($e);
             back();
         }
-            
+    }
 
-            
-        
-            
-           
-        
-        
+    public function useredit()
+    {   
+        var_dump($_POST);
+        try {
+            User::edit([
+            'id' => $_POST['id'],
+            'name' => $_POST['name'],
+            'email' => $_POST['email'],
+            //'password' => password_hash($_POST['password'], PASSWORD_BCRYPT),
+            'role' => $_POST['role']
+            ]);
+            redirect('');
+        } catch (\Exception $e) {
+            errHandle($e);
+            back();
+        }
     }
 }

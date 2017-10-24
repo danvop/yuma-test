@@ -40,6 +40,11 @@ function errHandle(\Exception $e)
     $_SESSION['error'] = $e->getMessage();
 }
 
+function err($e)
+{
+    $_SESSION['error'] = $e;
+}
+
 function errShow()
 {
     if(isset($_SESSION['error'])){

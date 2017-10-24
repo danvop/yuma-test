@@ -9,6 +9,7 @@ $router->get('usershow', 'UsersController@usershow');
 $router->post('login', 'UsersController@authorize');
 $router->post('store', 'UsersController@store');
 $router->post('userdel', 'UsersController@userdel');
+$router->post('useredit', 'UsersController@useredit');
 
 
 // $router->get('', 'PagesController@home');

@@ -4,11 +4,16 @@ namespace app;
 
 class User extends Model
 {
+    protected $id;
     protected $name;
     protected $password;
     protected $email;
     protected $role;
 
+    public function getId()
+    {
+        return $this->id;
+    }
     public function getRole()
     {
         return $this->role;
@@ -39,6 +44,8 @@ class User extends Model
         return $ret;
     }
 
+    
+
     public static function store($parameters)
     {
         $user = new static;
@@ -48,10 +55,14 @@ class User extends Model
         }
     }
 
-    /**
-     * connect to databas4e
-     * @return PDO connection
-     */
+    public static function edit($parameters)
+    {
+        $user = new static;
+        //die(var_dump($user->insert($parameters)));
+        if (!$user->update($parameters)) {
+            throw new \Exception('This email already exists');
+        }
+    }
     
 
 

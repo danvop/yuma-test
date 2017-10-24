@@ -9,6 +9,7 @@ class Auth
     public static function login(User $user)
     {
         $_SESSION['user'] = [
+            'id' => $user->getId(),
             'name' => $user->getName(),
             'email' => $user->getEmail(),
             'role' => $user->getRole()
@@ -28,6 +29,12 @@ class Auth
         return (isset($_SESSION['user']));
     }
 
+    public static function userId()
+    {
+        if (static::check()) {
+            return $_SESSION['user']['id'];
+        }
+    }
     public static function userName()
     {
         if (static::check()) {

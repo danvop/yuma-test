@@ -74,9 +74,9 @@ class UsersController
 
     public function useredit()
     {   
-        var_dump($_POST);
+        
         try {
-            User::edit([
+            User::update([
             'id' => $_POST['id'],
             'name' => $_POST['name'],
             'email' => $_POST['email'],

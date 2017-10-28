@@ -68,32 +68,9 @@ abstract class Model
         }
     }
 
-    public function update($parameters)
-    {   
-        $items = null;
-        foreach($_POST as $key => $value) {
-        
-        //
-        $items .= "$key=:$key";
-        $items .= ', ';
-        $params[$key] = $value;
-        
-        }
-if (!$items) die("Nothing to update");
-echo $items . "\n"; // name=:name, email=:email
-        try {
-            $sql = sprintf('UPDATE %s SET %s WHERE ID = :'.$this->getModel().'Id', $this->getModel().'s', $items);
-            //die(var_dump($sql));
-            $parameters["{$this->getModel()}id"] = $_POST['id'];
-            $statement = $this->pdo->prepare($sql);
-        
-            $statement->execute($parameters);
-            //return true;
-        } catch (\PDOException $e) {
-            var_dump($e->getMessage());
-            //return false;
-        }
-    }
+    
 
     
+
+//    
 }

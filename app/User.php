@@ -55,15 +55,16 @@ class User extends Model
         }
     }
 
-    public static function edit($parameters)
+    public static function update($parameters)
     {
         $user = new static;
-        //die(var_dump($user->insert($parameters)));
-        if (!$user->update($parameters)) {
-            throw new \Exception('This email already exists');
-        }
+        var_dump($parameters);
+        
+        $sql = sprintf('UPDATE %s SET %s WHERE ID = :'.$this->getModel().'Id', $this->getModel().'s', $items);
+
+        var_dump($sql);
+        
     }
-    
 
 
 //

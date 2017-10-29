@@ -8,7 +8,9 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
+            <?php if (Auth::userRole() == 'admin') : ?>
             <a class="nav-link" href="useradd">Add User <span class="sr-only"></span></a>
+            <?php endif; ?>
           </li>
 
           

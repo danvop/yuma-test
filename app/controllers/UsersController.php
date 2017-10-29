@@ -76,7 +76,7 @@ class UsersController
     {   
         
         try {
-            User::update([
+            User::useredit([
             'id' => $_POST['id'],
             'name' => $_POST['name'],
             'email' => $_POST['email'],

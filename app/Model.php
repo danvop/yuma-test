@@ -68,6 +68,36 @@ abstract class Model
         }
     }
 
+    public function update($parameters)
+    {
+        
+        try {
+            foreach ($parameters as $key => $value) {
+                if ($key == 'id') {
+                    continue;
+                }
+                $set[] = $key .' = :'. $key;
+            }
+
+            $set = implode(', ', $set);
+               
+            $sql = sprintf(
+                "UPDATE %s
+                SET %s 
+                WHERE id = :id",
+                $this->getModel().'s',
+                $set
+            );
+
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($parameters);
+            
+            return true;
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
+
     
 
     

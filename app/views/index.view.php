@@ -11,19 +11,61 @@ require 'partials/nav.php';
         <?php if (!Auth::check()) : ?>
             <h2> Please, log in ! </h2>
         <?php endif; ?>
-         
     </div>
 <?php if (Auth::check()) : ?>
     
+<form class="form-inline">
+  <div class="form-group">
+    <input class="form-control" type="text" placeholder="Filter by">
+  </div>
+  <div class="form-group mx-sm-3">
+    <select class="form-control">
+        <option>id</option>
+        <option>name</option>
+        <option>email</option>
+        <option>role</option>
+    </select>
+  </div>
+    <button type="submit" class="btn btn-primary">Filter</button>
+  </div>
 
+
+</form>
+<hr>
 
 <table class="table table-hover">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Role</th>
+      <th scope="col">
+          <a href="" class="btn btn btn-dark">Id</a>
+          <div class="btn-group dropup">
+            <a href="" class="btn btn-dark dropdown-toggle">Id</a>
+          </div>
+          <a href="" class="btn btn-dark dropdown-toggle">Id</a>
+
+
+      </th>
+      <th scope="col">
+      <a href="" class="btn btn btn-dark">Name</a>
+        <div class="btn-group dropup">
+            <a href="" class="btn btn-dark dropdown-toggle">Name</a>
+        </div>
+        <a href="" class="btn btn-dark dropdown-toggle">Name</a>
+      </th>
+      <th scope="col">
+          <a href="" class="btn btn btn-dark">Email</a>
+          <div class="btn-group dropup">
+            <a href="" class="btn btn-dark dropdown-toggle">Email</a>
+          </div>
+          <a href="" class="btn btn-dark dropdown-toggle">Email</a>
+      </th>
+      <th scope="col">
+      <a href="" class="btn btn btn-dark">Role</a>
+          <div class="btn-group dropup">
+            <a href="" class="btn btn-dark dropdown-toggle">Role</a>
+          </div>
+        <a href="" class="btn btn-dark dropdown-toggle">Role</a>
+      </th>
     </tr>
   </thead>
   <tbody>

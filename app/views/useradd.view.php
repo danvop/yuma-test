@@ -25,6 +25,7 @@ require 'partials/nav.php';
         </select>
         <hr>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button>
+        <a href="/" class="btn btn-lg btn-secondary btn-block">Cancel</a>
       </form>
       <?php
         errShow();

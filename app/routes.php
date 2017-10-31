@@ -1,6 +1,7 @@
 <?php
 
 $router->get('', 'UsersController@index');
+// $router->get('back', 'UsersController@index');
 $router->get('login', 'UsersController@login');
 $router->get('logout', 'UsersController@logout');
 $router->get('useradd', 'UsersController@useradd');

@@ -40,6 +40,7 @@ $admin = ((Auth::userRole() == 'admin'));
         <?php if ($admin) : ?>
         <button class="btn btn-lg btn-danger btn-block" type="submit" formaction="userdel" <?= ($owner) ? 'disabled' : '' ?>>Delete</button>
         <?php endif; ?>
+        <a href="/" class="btn btn-lg btn-secondary btn-block">Back</a>
       </form>
         <?php
             errShow();

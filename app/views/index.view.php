@@ -26,7 +26,10 @@ require 'partials/nav.php';
         <option>role</option>
     </select>
   </div>
+  <div class="form-group mx-sm-1">
     <button type="submit" class="btn btn-primary">Filter</button>
+  </div>
+    <a href="/" class="btn btn-secondary">Reset</a>
   </div>
 
 
@@ -48,9 +51,9 @@ require 'partials/nav.php';
       <th scope="col">
       <a href="" class="btn btn btn-dark">Name</a>
         <div class="btn-group dropup">
-            <a href="" class="btn btn-dark dropdown-toggle">Name</a>
+            <a href="?sortZA=name" class="btn btn-dark dropdown-toggle">Name</a>
         </div>
-        <a href="" class="btn btn-dark dropdown-toggle">Name</a>
+        <a href="?sortAZ=name" class="btn btn-dark dropdown-toggle">Name</a>
       </th>
       <th scope="col">
           <a href="" class="btn btn btn-dark">Email</a>

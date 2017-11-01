@@ -7,12 +7,6 @@ use app\User;
 
 class UsersController
 {
-    public function index()
-    {
-        $users = (new User)->fetchAll();
-        return view('index', compact('users'));
-    }
-
     public function login()
     {
           return view('login');
@@ -38,7 +32,6 @@ class UsersController
             errHandle($e);
             back();
         }
-        
     }
     
     public function useradd()

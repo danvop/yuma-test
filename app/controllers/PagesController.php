@@ -8,41 +8,27 @@ class PagesController
 {
     public function index()
     {
-
-        
-        if (isset($_GET['sort'])) {
-            $chunks = preg_split('/(?=[A-Z])/', $_GET['sort']);
+        setSort();
+        if (getSort()) {
+            $chunks = preg_split('/(?=[A-Z])/', getSort());
+            $sortType = $chunks[0];
+            $sortDir = $chunks[1];
         }
-        var_dump($chunks);
-
-        //nameAZ
-        //nameZA
-        //direction = AZ or ZA
-        //column = name
-        if (isset($_GET['sort'])) {
-            usort($users, function ($a, $b) {
-                return strnatcmp($a->{$_GET['sort']}, $b->{$_GET['sort']});
-            });
-        }
-
-        
-
-
+    
         $users = (new User)->fetchAll();
-        //var_dump($_GET['sortUp']);
-        if (isset($_GET['sortAZ'])) {
-            usort($users, function ($a, $b) {
-                return strnatcmp($a->{$_GET['sortAZ']}, $b->{$_GET['sortAZ']});
+
+        if (getSort()) {
+            usort($users, function ($a, $b) use ($sortDir, $sortType) {
+                if ($sortDir == 'Az') {
+                    return strnatcmp($a->{$sortType}, $b->{$sortType});
+                }
+                if ($sortDir == 'Za') {
+                    return strnatcmp($b->{$sortType}, $a->{$sortType});
+                }
             });
         }
 
-        if (isset($_GET['sortZA'])) {
-            usort($users, function ($a, $b) {
-                return strnatcmp($b->{$_GET['sortZA']}, $a->{$_GET['sortZA']});
-            });
-        }
-      
-        //var_dump($users);
+
 
         return view('index', compact('users'));
     }
@@ -66,6 +52,9 @@ class PagesController
 
     public function filterReset()
     {
-
+        if (getSort()) {
+            unset($_SESSION['sort']);
+        }
+        redirect('');
     }
 }

@@ -1,6 +1,9 @@
 <?php
 
 $router->get('', 'PagesController@index');
+$router->get('filterReset', 'PagesController@filterReset');
+
+
 // $router->get('back', 'UsersController@index');
 $router->get('login', 'UsersController@login');
 $router->get('logout', 'UsersController@logout');

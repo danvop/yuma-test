@@ -29,7 +29,7 @@ require 'partials/nav.php';
   <div class="form-group mx-sm-1">
     <button type="submit" class="btn btn-primary">Filter</button>
   </div>
-    <a href="/" class="btn btn-secondary">Reset</a>
+    <a href="filterReset" class="btn btn-secondary">Reset</a>
   </div>
 
 

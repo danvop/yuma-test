@@ -47,9 +47,21 @@ function err($e)
 
 function errShow()
 {
-    if(isset($_SESSION['error'])){
+    if (isset($_SESSION['error'])) {
         require "app/views/partials/error.php";
         unset($_SESSION['error']);
     }
     
+}
+
+function setSort()
+{
+    if (isset($_GET['sort'])) {
+        $_SESSION['sort'] = $_GET['sort'];
+    }
+}
+
+function getSort()
+{
+    return $_SESSION['sort'] ?? '';
 }

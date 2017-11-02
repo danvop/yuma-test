@@ -65,3 +65,16 @@ function getSort()
 {
     return $_SESSION['sort'] ?? '';
 }
+
+function setFilt($filtQuery, $filtBy)
+{
+    
+        $_SESSION['filt'] = 'filtQuery='.$filtQuery.'&filtBy='.$filtBy.'&';
+    
+    
+}
+
+function getFilt()
+{   
+    return $_SESSION['filt'] ?? '';
+}

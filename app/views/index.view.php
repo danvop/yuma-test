@@ -14,22 +14,23 @@ require 'partials/nav.php';
     </div>
 <?php if (Auth::check()) : ?>
     
-<form class="form-inline">
+<form class="form-inline" action='/f' method="GET">
   <div class="form-group">
-    <input class="form-control" type="text" placeholder="Filter by">
+    <input name="filtQuery" class="form-control" type="text" 
+    placeholder="<?= (isset($_GET['filtQuery']) && $_GET['filtQuery'] != '' ) ? $_GET['filtQuery'] : 'Filter by' ?>">
   </div>
   <div class="form-group mx-sm-3">
-    <select class="form-control">
+    <select name="filtBy" class="form-control">
         <option>id</option>
-        <option>name</option>
-        <option>email</option>
+        <option <?= (isset($_GET['filtBy']) && $_GET['filtBy'] == 'name') ? 'selected' : '' ?> >name</option>
+        <option <?= (isset($_GET['filtBy']) && $_GET['filtBy'] == 'email') ? 'selected' : '' ?> >email</option>
         <option>role</option>
     </select>
   </div>
   <div class="form-group mx-sm-1">
     <button type="submit" class="btn btn-primary">Filter</button>
   </div>
-    <a href="filterReset" class="btn btn-secondary">Reset</a>
+    <a href="/filterReset" class="btn btn-secondary">Reset</a>
   </div>
 
 
@@ -44,6 +45,8 @@ if (getSort()) {
     $sortType = '';
 }
 
+$filt = getFilt() ?? '';
+
 ?>
 
 
@@ -51,40 +54,40 @@ if (getSort()) {
   <thead class="thead-dark">
     <tr>
       <th scope="col">
-        <?= ($sortType != 'id') ? "<a href='?sort=idAz' class='btn btn btn-dark'>Id</a>" : ''?>
+        <?= ($sortType != 'id') ? "<a href='?{$filt}sort=idAz' class='btn btn btn-dark'>Id</a>" : ''?>
         <?= (($sortType == 'id')&&($sortDir == 'Az')) ?
         "<div class='btn-group dropup'>
-            <a href='?sort=idZa' class='btn btn-dark dropdown-toggle'>Id</a>
+            <a href='?{$filt}sort=idZa' class='btn btn-dark dropdown-toggle'>Id</a>
         </div>" : ''
         ?>
-        <?= (($sortType == 'id')&&($sortDir == 'Za')) ? "<a href='?sort=idAz' class='btn btn-dark dropdown-toggle'>Id</a>" : ''?>
+        <?= (($sortType == 'id')&&($sortDir == 'Za')) ? "<a href='?{$filt}sort=idAz' class='btn btn-dark dropdown-toggle'>Id</a>" : ''?>
       </th>
       <th scope="col">
-        <?= ($sortType != 'name') ? "<a href='?sort=nameAz' class='btn btn btn-dark'>Name</a>" : ''?>
+        <?= ($sortType != 'name') ? "<a href='?{$filt}sort=nameAz' class='btn btn btn-dark'>Name</a>" : ''?>
         <?= (($sortType == 'name')&&($sortDir == 'Az')) ?
         "<div class='btn-group dropup'>
-            <a href='?sort=nameZa' class='btn btn-dark dropdown-toggle'>Name</a>
+            <a href='?{$filt}sort=nameZa' class='btn btn-dark dropdown-toggle'>Name</a>
         </div>" : ''
         ?>
-        <?= (($sortType == 'name')&&($sortDir == 'Za')) ? "<a href='?sort=nameAz' class='btn btn-dark dropdown-toggle'>Name</a>" : ''?>
+        <?= (($sortType == 'name')&&($sortDir == 'Za')) ? "<a href='?{$filt}sort=nameAz' class='btn btn-dark dropdown-toggle'>Name</a>" : ''?>
       </th>
       <th scope="col">
-        <?= ($sortType != 'email') ? "<a href='?sort=emailAz' class='btn btn btn-dark'>Email</a>" : ''?>
+        <?= ($sortType != 'email') ? "<a href='?{$filt}sort=emailAz' class='btn btn btn-dark'>Email</a>" : ''?>
         <?= (($sortType == 'email')&&($sortDir == 'Az')) ?
         "<div class='btn-group dropup'>
-            <a href='?sort=emailZa' class='btn btn-dark dropdown-toggle'>Email</a>
+            <a href='?{$filt}sort=emailZa' class='btn btn-dark dropdown-toggle'>Email</a>
         </div>" : ''
         ?>
-        <?= (($sortType == 'email')&&($sortDir == 'Za')) ? "<a href='?sort=emailAz' class='btn btn-dark dropdown-toggle'>Email</a>" : ''?>
+        <?= (($sortType == 'email')&&($sortDir == 'Za')) ? "<a href='?{$filt}sort=emailAz' class='btn btn-dark dropdown-toggle'>Email</a>" : ''?>
       </th>
       <th scope="col">
-        <?= ($sortType != 'role') ? "<a href='?sort=roleAz' class='btn btn btn-dark'>Role</a>" : ''?>
+        <?= ($sortType != 'role') ? "<a href='?{$filt}sort=roleAz' class='btn btn btn-dark'>Role</a>" : ''?>
         <?= (($sortType == 'role')&&($sortDir == 'Az')) ?
         "<div class='btn-group dropup'>
-            <a href='?sort=roleZa' class='btn btn-dark dropdown-toggle'>Role</a>
+            <a href='?{$filt}sort=roleZa' class='btn btn-dark dropdown-toggle'>Role</a>
         </div>" : ''
         ?>
-        <?= (($sortType == 'role')&&($sortDir == 'Za')) ? "<a href='?sort=roleAz' class='btn btn-dark dropdown-toggle'>Role</a>" : ''?>
+        <?= (($sortType == 'role')&&($sortDir == 'Za')) ? "<a href='?{$filt}sort=roleAz' class='btn btn-dark dropdown-toggle'>Role</a>" : ''?>
       </th>
 
 

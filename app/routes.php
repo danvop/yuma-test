@@ -2,7 +2,7 @@
 
 $router->get('', 'PagesController@index');
 $router->get('filterReset', 'PagesController@filterReset');
-
+$router->get('f', 'PagesController@filter');
 
 // $router->get('back', 'UsersController@index');
 $router->get('login', 'UsersController@login');

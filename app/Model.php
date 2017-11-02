@@ -37,16 +37,34 @@ abstract class Model
 
     public function fetchAll()
     {
-            $sql = ("
-                SELECT 
-                * 
-                FROM 
-                ". $this->getModel() ."s 
-                ");
-            
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute();
-            return $stmt->fetchAll(\PDO::FETCH_OBJ);
+        $sql = ("
+            SELECT 
+            * 
+            FROM 
+            ". $this->getModel() ."s 
+            ");
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_OBJ);
+    }
+
+    public function fetchFilt($filtQuery, $filtBy)
+    {
+        
+
+        $sql = sprintf(
+            'SELECT 
+            * 
+            FROM %s
+            WHERE %s LIKE ?',
+            $this->getModel().'s',
+            $filtBy
+            );
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(array("%{$filtQuery}%"));
+        return $stmt->fetchAll(\PDO::FETCH_OBJ);
     }
 
     public function insert($parameters)

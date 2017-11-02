@@ -35,25 +35,65 @@ require 'partials/nav.php';
 
 </form>
 <hr>
+<?php
+if (getSort()) {
+    $chunks = preg_split('/(?=[A-Z])/', getSort());
+    $sortType = $chunks[0];
+    $sortDir = $chunks[1];
+} else {
+    $sortType = '';
+}
+
+?>
+
 
 <table class="table table-hover">
   <thead class="thead-dark">
     <tr>
       <th scope="col">
-          <a href="" class="btn btn btn-dark">Id</a>
-          <div class="btn-group dropup">
-            <a href="" class="btn btn-dark dropdown-toggle">Id</a>
-          </div>
-          <a href="" class="btn btn-dark dropdown-toggle">Id</a>
-
-
+        <?= ($sortType != 'id') ? "<a href='?sort=idAz' class='btn btn btn-dark'>Id</a>" : ''?>
+        <?= (($sortType == 'id')&&($sortDir == 'Az')) ?
+        "<div class='btn-group dropup'>
+            <a href='?sort=idZa' class='btn btn-dark dropdown-toggle'>Id</a>
+        </div>" : ''
+        ?>
+        <?= (($sortType == 'id')&&($sortDir == 'Za')) ? "<a href='?sort=idAz' class='btn btn-dark dropdown-toggle'>Id</a>" : ''?>
       </th>
       <th scope="col">
+        <?= ($sortType != 'name') ? "<a href='?sort=nameAz' class='btn btn btn-dark'>Name</a>" : ''?>
+        <?= (($sortType == 'name')&&($sortDir == 'Az')) ?
+        "<div class='btn-group dropup'>
+            <a href='?sort=nameZa' class='btn btn-dark dropdown-toggle'>Name</a>
+        </div>" : ''
+        ?>
+        <?= (($sortType == 'name')&&($sortDir == 'Za')) ? "<a href='?sort=nameAz' class='btn btn-dark dropdown-toggle'>Name</a>" : ''?>
+      </th>
+      <th scope="col">
+        <?= ($sortType != 'email') ? "<a href='?sort=emailAz' class='btn btn btn-dark'>Email</a>" : ''?>
+        <?= (($sortType == 'email')&&($sortDir == 'Az')) ?
+        "<div class='btn-group dropup'>
+            <a href='?sort=emailZa' class='btn btn-dark dropdown-toggle'>Email</a>
+        </div>" : ''
+        ?>
+        <?= (($sortType == 'email')&&($sortDir == 'Za')) ? "<a href='?sort=emailAz' class='btn btn-dark dropdown-toggle'>Email</a>" : ''?>
+      </th>
+      <th scope="col">
+        <?= ($sortType != 'role') ? "<a href='?sort=roleAz' class='btn btn btn-dark'>Role</a>" : ''?>
+        <?= (($sortType == 'role')&&($sortDir == 'Az')) ?
+        "<div class='btn-group dropup'>
+            <a href='?sort=roleZa' class='btn btn-dark dropdown-toggle'>Role</a>
+        </div>" : ''
+        ?>
+        <?= (($sortType == 'role')&&($sortDir == 'Za')) ? "<a href='?sort=roleAz' class='btn btn-dark dropdown-toggle'>Role</a>" : ''?>
+      </th>
+
+
+      <!-- <th scope="col">
       <a href="" class="btn btn btn-dark">Name</a>
         <div class="btn-group dropup">
-            <a href="?sortZA=name" class="btn btn-dark dropdown-toggle">Name</a>
+            <a href="?sort=nameZa" class="btn btn-dark dropdown-toggle">Name</a>
         </div>
-        <a href="?sortAZ=name" class="btn btn-dark dropdown-toggle">Name</a>
+        <a href="?sort=nameAz" class="btn btn-dark dropdown-toggle">Name</a>
       </th>
       <th scope="col">
           <a href="" class="btn btn btn-dark">Email</a>
@@ -61,14 +101,8 @@ require 'partials/nav.php';
             <a href="" class="btn btn-dark dropdown-toggle">Email</a>
           </div>
           <a href="" class="btn btn-dark dropdown-toggle">Email</a>
-      </th>
-      <th scope="col">
-      <a href="" class="btn btn btn-dark">Role</a>
-          <div class="btn-group dropup">
-            <a href="" class="btn btn-dark dropdown-toggle">Role</a>
-          </div>
-        <a href="" class="btn btn-dark dropdown-toggle">Role</a>
-      </th>
+      </th> -->
+      
     </tr>
   </thead>
   <tbody>

@@ -52,6 +52,12 @@ abstract class Model
         return $stmt->fetchAll(\PDO::FETCH_OBJ);
     }
 
+    /**
+     * Fetch filterd list of users
+     * @param  $filtQuery filtering query
+     * @param  $filtBy    filtering order
+     * @return PDO::FETCH_OBJ
+     */
     public function fetchFilt($filtQuery, $filtBy)
     {
         $sql = sprintf(
@@ -61,13 +67,12 @@ abstract class Model
             WHERE %s LIKE ?',
             $this->getModel().'s',
             $filtBy
-            );
+        );
         
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(array("%{$filtQuery}%"));
         return $stmt->fetchAll(\PDO::FETCH_OBJ);
     }
-
     
     public function store($parameters)
     {
@@ -84,50 +89,35 @@ abstract class Model
 
     public function update($parameters)
     {
-        
-        try {
-            foreach ($parameters as $key => $value) {
-                if ($key == 'id') {
-                    continue;
-                }
-                $set[] = $key .' = :'. $key;
+        foreach ($parameters as $key => $value) {
+            if ($key == 'id') {
+                continue;
             }
-
-            $set = implode(', ', $set);
-               
-            $sql = sprintf(
-                "UPDATE %s
-                SET %s 
-                WHERE id = :id",
-                $this->getModel().'s',
-                $set
-            );
-
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute($parameters);
-            
-            return true;
-        } catch (\PDOException $e) {
-            return false;
+            $set[] = $key .' = :'. $key;
         }
+
+        $set = implode(', ', $set);
+           
+        $sql = sprintf(
+            "UPDATE %s
+            SET %s 
+            WHERE id = :id",
+            $this->getModel().'s',
+            $set
+        );
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($parameters);
     }
 
     public function delete($id)
     {
-            try {
-            $sql = sprintf(
-                'DELETE FROM %s WHERE id = :id',
-                static::getModel().'s'
-                
-            );
-
-            $statement = $this->pdo->prepare($sql);
-        
-            $statement->execute(['id' => $id]);
-            return true;
-        } catch (\PDOException $e) {
-            return false;
-        }
+        $sql = sprintf(
+            'DELETE FROM %s WHERE id = :id',
+            static::getModel().'s'
+        );
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute(['id' => $id]);
     }
 
     

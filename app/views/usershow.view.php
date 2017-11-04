@@ -38,7 +38,7 @@ $admin = ((Auth::userRole() == 'admin'));
         
         <?php endif; ?>
         <?php if ($admin) : ?>
-        <button class="btn btn-lg btn-danger btn-block" type="submit" formaction="userdel" <?= ($owner) ? 'disabled' : '' ?>>Delete</button>
+        <button class="btn btn-lg btn-danger btn-block" type="submit" formaction="delete" <?= ($owner) ? 'disabled' : '' ?>>Delete</button>
         <?php endif; ?>
         <a href="/" class="btn btn-lg btn-secondary btn-block">Back</a>
       </form>

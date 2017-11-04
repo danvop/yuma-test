@@ -13,6 +13,8 @@ require 'partials/nav.php';
         <?php endif; ?>
     </div>
 <?php if (Auth::check()) : ?>
+
+<?php errShow(); ?>
     
 <form class="form-inline" action='/f' method="GET">
   <div class="form-group">
@@ -89,23 +91,6 @@ $filt = getFilt() ?? '';
         ?>
         <?= (($sortType == 'role')&&($sortDir == 'Za')) ? "<a href='?{$filt}sort=roleAz' class='btn btn-dark dropdown-toggle'>Role</a>" : ''?>
       </th>
-
-
-      <!-- <th scope="col">
-      <a href="" class="btn btn btn-dark">Name</a>
-        <div class="btn-group dropup">
-            <a href="?sort=nameZa" class="btn btn-dark dropdown-toggle">Name</a>
-        </div>
-        <a href="?sort=nameAz" class="btn btn-dark dropdown-toggle">Name</a>
-      </th>
-      <th scope="col">
-          <a href="" class="btn btn btn-dark">Email</a>
-          <div class="btn-group dropup">
-            <a href="" class="btn btn-dark dropdown-toggle">Email</a>
-          </div>
-          <a href="" class="btn btn-dark dropdown-toggle">Email</a>
-      </th> -->
-      
     </tr>
   </thead>
   <tbody>

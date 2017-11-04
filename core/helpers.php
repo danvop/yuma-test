@@ -28,6 +28,7 @@ function dd($param)
 function redirect($path)
 {
     header("Location: /{$path}");
+
 }
 
 function back()
@@ -35,9 +36,9 @@ function back()
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 
-function errHandle(\Exception $e)
+function errHandle($e)
 {
-    $_SESSION['error'] = $e->getMessage();
+    $_SESSION['error'] = $e;
 }
 
 function err($e)

@@ -3,32 +3,9 @@ require('vendor/autoload.php');
 
 use core\{Router, Request};
 
-Router::load('app/routes.php')
-    ->direct(Request::uri(), Request::method());
+try {
+    Router::load('app/routes.php')
+    ->direct(Request::uri(), Request::method()); 
+} catch (\Exception $e) {
 
-
-
-
-// $user = (new User)->checkUserByEmail('john@mail.com');
-
-// Auth::logout();
-
-// var_dump(Auth::check());
-
-
-
-// $user = new User;
-// $user->insert([
-//     'name' => 'jodfhn',
-//     'email' => 'jddohn@mail.com',
-//     'password' => 'secret',
-//     'role' => 'user'
-//     ]);
-
-// dd($user->fetchAll());
-//$user->getConnection();
-
-// $user = 'admin';
-
-// view('index', compact('user'));
-// 
+}

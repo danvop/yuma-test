@@ -36,6 +36,11 @@ class UsersController
     
     public function useradd()
     {
+        if ((Auth::userRole() != 'admin')) {
+            errHandle('Forbidden');
+            redirect('');
+            die();
+        }
         return view('useradd');
     }
 
@@ -44,7 +49,7 @@ class UsersController
         $user = (new User)->checkUserByEmail($_GET['email']);
         return view('usershow', compact('user'));
     }
-    public function userdel()
+    public function delete()
     {
         $user = new User;
         try {
@@ -68,20 +73,21 @@ class UsersController
             ]);
             redirect('');
         } catch (\Exception $e) {
-            var_dump($e);
-            die();
-            errHandle($e);
-
-
+            if ($e->getCode() == '23000') {
+                errHandle('This email already exists');
+                back();
+                die();
+            }
+            
+            errHandle($e->getMessage());
             back();
-
         }
     }
 
     public function useredit()
     {
         try {
-            User::useredit([
+            (new User)->update([
             'id' => $_POST['id'],
             'name' => $_POST['name'],
             'email' => $_POST['email'],
@@ -90,7 +96,13 @@ class UsersController
             ]);
             redirect('');
         } catch (\Exception $e) {
-            errHandle($e);
+            if ($e->getCode() == '23000') {
+                errHandle('This email already exists');
+                back();
+                die();
+            }
+            
+            errHandle($e->getMessage());
             back();
         }
     }

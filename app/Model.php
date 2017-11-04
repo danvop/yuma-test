@@ -2,6 +2,8 @@
 
 namespace app;
 
+use core\App;
+
 abstract class Model
 {
     protected $pdo;
@@ -22,14 +24,15 @@ abstract class Model
     */
     protected function getConnection()
     {
-        $username = 'homestead';
-        $password = 'secret';
-        $host = 'localhost';
-        $db = 'yuma';
-        $options = [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION];
-        
+
+        $dbConfig = App::get('config')['database'];
         try {
-            return new \PDO("mysql:dbname=$db;host=$host", $username, $password, $options);
+            return new \PDO(
+                "mysql:dbname={$dbConfig['name']};host={$dbConfig['host']}",
+                $dbConfig['username'],
+                $dbConfig['password'],
+                $dbConfig['options']
+            );
         } catch (\PDOException $e) {
             die($e->getMessage());
         }

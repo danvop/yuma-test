@@ -54,8 +54,6 @@ abstract class Model
 
     public function fetchFilt($filtQuery, $filtBy)
     {
-        
-
         $sql = sprintf(
             'SELECT 
             * 
@@ -113,6 +111,26 @@ abstract class Model
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute($parameters);
             
+            return true;
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
+
+    public function delete($id)
+    {
+            try {
+            $sql = sprintf(
+                'DELETE FROM %s WHERE id = :id',
+                static::getModel().'s'
+                
+            );
+
+            // var_dump(['id' => $id]);
+            // die();
+            $statement = $this->pdo->prepare($sql);
+        
+            $statement->execute(['id' => $id]);
             return true;
         } catch (\PDOException $e) {
             return false;

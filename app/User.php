@@ -62,11 +62,6 @@ class User extends Model
         if (!$user->update($parameters)) {
             throw new \Exception('This email already exists');
         }
-        
-        
-
     }
-
-
-//
+    //
 }

@@ -46,7 +46,14 @@ class UsersController
     }
     public function userdel()
     {
-        redirect('');
+        $user = new User;
+        try {
+            $user->delete($_POST['id']);
+            redirect('');
+        } catch (\Exception $e) {
+            errHandle($e);
+            back();
+        }
     }
 
     public function store()
@@ -66,8 +73,7 @@ class UsersController
     }
 
     public function useredit()
-    {   
-        
+    {
         try {
             User::useredit([
             'id' => $_POST['id'],

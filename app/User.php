@@ -46,14 +46,14 @@ class User extends Model
 
     
 
-    public static function store($parameters)
-    {
-        $user = new static;
-        //die(var_dump($user->insert($parameters)));
-        if (!$user->insert($parameters)) {
-            throw new \Exception('This email already exists');
-        }
-    }
+    // public static function store($parameters)
+    // {
+    //     $user = new static;
+    //     //die(var_dump($user->insert($parameters)));
+    //     if (!$user->insert($parameters)) {
+    //         throw new \Exception('This email already exists');
+    //     }
+    // }
 
     public static function useredit($parameters)
     {

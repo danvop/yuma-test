@@ -58,8 +58,9 @@ class UsersController
 
     public function store()
     {
+        $user = new User;
         try {
-            User::store([
+            $user->store([
             'name' => $_POST['name'],
             'email' => $_POST['email'],
             'password' => password_hash($_POST['password'], PASSWORD_BCRYPT),
@@ -67,8 +68,13 @@ class UsersController
             ]);
             redirect('');
         } catch (\Exception $e) {
+            var_dump($e);
+            die();
             errHandle($e);
+
+
             back();
+
         }
     }
 

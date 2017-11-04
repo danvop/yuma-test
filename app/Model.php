@@ -68,23 +68,18 @@ abstract class Model
         return $stmt->fetchAll(\PDO::FETCH_OBJ);
     }
 
-    public function insert($parameters)
+    
+    public function store($parameters)
     {
-        
-        try {
-            $sql = sprintf(
-                'insert into %s (%s) values (%s)',
-                $this->getModel().'s',
-                implode(', ', array_keys($parameters)),
-                ':' . implode(', :', array_keys($parameters))
-            );
-            $statement = $this->pdo->prepare($sql);
-        
-            $statement->execute($parameters);
-            return true;
-        } catch (\PDOException $e) {
-            return false;
-        }
+        $sql = sprintf(
+            'insert into %s (%s) values (%s)',
+            $this->getModel().'s',
+            implode(', ', array_keys($parameters)),
+            ':' . implode(', :', array_keys($parameters))
+        );
+        $statement = $this->pdo->prepare($sql);
+    
+        $statement->execute($parameters);
     }
 
     public function update($parameters)
@@ -126,8 +121,6 @@ abstract class Model
                 
             );
 
-            // var_dump(['id' => $id]);
-            // die();
             $statement = $this->pdo->prepare($sql);
         
             $statement->execute(['id' => $id]);

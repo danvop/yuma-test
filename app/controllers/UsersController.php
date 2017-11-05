@@ -29,7 +29,7 @@ class UsersController
             }
             throw new \Exception('Wrong password or email');
         } catch (\Exception $e) {
-            errHandle($e);
+            errHandle($e->getMessage());
             back();
         }
     }
